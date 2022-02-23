@@ -29,6 +29,7 @@ from cose.keys.keytype import KtyEC2
 
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
 
+#Random generate certificate ID
 def generateID(length):
     string = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     pieces = []
