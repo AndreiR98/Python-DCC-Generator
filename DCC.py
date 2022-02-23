@@ -90,6 +90,7 @@ json_payload = '{ ' + json_issuance + ', "dob": "' + birthdate + '", ' + json_na
 json_payload = json_payload.encode("utf-8")
 json_payload = json.loads(json_payload.decode("utf-8"))
 
+#Generate the payload structure
 json_payload =  {
     1: issuing_country,
     4: 1656622799,
@@ -101,8 +102,10 @@ json_payload =  {
 
 payload = cbor2.dumps(json_payload)
 
+#Generate the message structure
 message = Sign1Message(phdr={Algorithm:Es256, KID:keyid}, payload=payload)
 
+#Set EC key options
 Key_options = {
     KpKty:KtyEC2,
     KpAlg:Es256,
@@ -112,14 +115,17 @@ Key_options = {
 
 cose_key = CoseKey.from_dict(Key_options)
 
+#Assign message the key
 message.key = cose_key
 
+#Sign the message
 output = message.encode()
 
 output = zlib.compress(output, 9)
 
 output_print = b45encode(output)
 
+#Output the content, this need to me trnasformed into QR
 print(b'HC1:'+output_print)
 
 qr = pyqrcode.create(b'HC1:'+output_print)
