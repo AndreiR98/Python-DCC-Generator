@@ -1,3 +1,9 @@
+#Author:Rotaru Andrei <rotaru.andrei98@gmail.com>
+#Project build for fun, and learning process(COSE, Cryptography).
+#Using random generated EC key in order to sign the certificate.
+#Using, real kID from Romania.
+
+
 import cbor2
 import zlib
 import unidecode
